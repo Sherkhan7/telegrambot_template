@@ -1,0 +1,127 @@
+{
+  "id": "6250459071425375474",
+  "chat_instance": "5972527331057173643",
+  "message": {
+    "message_id": 13864,
+    "date": 1607857240,
+    "chat": {
+      "id": 1455298408,
+      "type": "private",
+      "username": "esanov_98",
+      "first_name": "Sherkhan"
+    },
+    "reply_to_message": {
+      "message_id": 13572,
+      "date": 1607803080,
+      "chat": {
+        "id": 1455298408,
+        "type": "private",
+        "username": "esanov_98",
+        "first_name": "Sherkhan"
+      },
+      "edit_date": 1607804665,
+      "text": "\ud83c\udd94 21 [Yangi buyurtma]\n\n\ud83d\udcd5 Zero to One (Noldan birgacha):\n1 X 200000 so'm\n----------------------\nJami: 200000 so'm\n\nManzil: ujbn\nTel: +998330191198\nStatus: qabul qilish kutilmoqda",
+      "entities": [
+        {
+          "type": "phone_number",
+          "offset": 134,
+          "length": 13
+        },
+        {
+          "type": "bold",
+          "offset": 156,
+          "length": 23
+        },
+        {
+          "type": "italic",
+          "offset": 156,
+          "length": 23
+        },
+        {
+          "type": "underline",
+          "offset": 156,
+          "length": 23
+        }
+      ],
+      "caption_entities": [],
+      "photo": [],
+      "new_chat_members": [],
+      "new_chat_photo": [],
+      "delete_chat_photo": false,
+      "group_chat_created": false,
+      "supergroup_chat_created": false,
+      "channel_chat_created": false,
+      "from": {
+        "id": 1363290755,
+        "first_name": "myechoechobot",
+        "is_bot": true,
+        "username": "myechoechobot"
+      }
+    },
+    "text": "Buyurtma qabul qilindi. [\ud83c\udd94 20]Buyurtma yetkazilganidan keyinYetkazib berildi tugmasini bosing",
+    "entities": [
+      {
+        "type": "bold",
+        "offset": 0,
+        "length": 23
+      },
+      {
+        "type": "italic",
+        "offset": 0,
+        "length": 23
+      },
+      {
+        "type": "underline",
+        "offset": 0,
+        "length": 23
+      },
+      {
+        "type": "bold",
+        "offset": 61,
+        "length": 16
+      },
+      {
+        "type": "italic",
+        "offset": 61,
+        "length": 16
+      },
+      {
+        "type": "underline",
+        "offset": 61,
+        "length": 16
+      }
+    ],
+    "caption_entities": [],
+    "photo": [],
+    "new_chat_members": [],
+    "new_chat_photo": [],
+    "delete_chat_photo": false,
+    "group_chat_created": false,
+    "supergroup_chat_created": false,
+    "channel_chat_created": false,
+    "reply_markup": {
+      "inline_keyboard": [
+        [
+          {
+            "text": "Yetkazib berildi",
+            "callback_data": "d_20"
+          }
+        ]
+      ]
+    },
+    "from": {
+      "id": 1363290755,
+      "first_name": "myechoechobot",
+      "is_bot": true,
+      "username": "myechoechobot"
+    }
+  },
+  "data": "d_20",
+  "from": {
+    "id": 1455298408,
+    "first_name": "Sherkhan",
+    "is_bot": false,
+    "username": "esanov_98",
+    "language_code": "en"
+  }
+}

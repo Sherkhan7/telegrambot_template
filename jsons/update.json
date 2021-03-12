@@ -1,0 +1,38 @@
+{
+    "update_id": 508631165,
+    "message": {
+        "message_id": 15941,
+        "date": 1613840751,
+        "chat": {
+            "id": 197256155,
+            "type": "private",
+            "username": "sherzodbek_esanov",
+            "first_name": "Sherzodbek",
+            "last_name": "Esanov \ud83e\udd82"
+        },
+        "text": "dsds ds sd /getuserstatedsdsds",
+        "entities": [
+            {
+                "type": "bot_command",
+                "offset": 11,
+                "length": 19
+            }
+        ],
+        "caption_entities": [],
+        "photo": [],
+        "new_chat_members": [],
+        "new_chat_photo": [],
+        "delete_chat_photo": false,
+        "group_chat_created": false,
+        "supergroup_chat_created": false,
+        "channel_chat_created": false,
+        "from": {
+            "id": 197256155,
+            "first_name": "Sherzodbek",
+            "is_bot": false,
+            "last_name": "Esanov \ud83e\udd82",
+            "username": "sherzodbek_esanov",
+            "language_code": "en"
+        }
+    }
+}
