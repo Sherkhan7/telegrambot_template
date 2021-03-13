@@ -2,6 +2,6 @@
 __pycache__/
 # uncomment these folders to add the .gitignore
 #config/
-#jsons/*.json
+#jsons/
 my_pickle_conversations
 my_pickle_user_data
