@@ -1,8 +1,9 @@
-# @telegrambot_name token:
-telegrambot_name_token = 'TOKEN'
 
 # bot's username
 bot_username = 'payshanbazigiroshbot'
+
+# @telegrambot_name token:
+telegrambot_name_token = 'TOKEN'
 
 # @myechoechobot token:
 myechoechobot_token = 'TOKEN'
