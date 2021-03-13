@@ -1,4 +1,3 @@
-
 # bot's username
 bot_username = 'payshanbazigiroshbot'
 
