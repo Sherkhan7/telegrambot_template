@@ -24,7 +24,7 @@ SERVER_IP = '185.246.91.79'
 PORT = 5005
 URL = 'https://cardel.ml/'
 # GROUP_ID = mygroup2020_id
-PHOTOS_URL = f'f{URL}images/'
+PHOTOS_URL = f'{URL}images/'
 ACTIVE_ADMINS = [ADMINS['sherzodbek']]
 DEVELOPER_CHAT_ID = ADMINS['sherzodbek']
 
@@ -33,6 +33,6 @@ DB_CONFIG = {
     'host': 'localhost',
     'user': 'db username',
     'password': 'db password',
-    'database': 'db name'
+    'database': f'{bot_username}'
 }
 # =====================================
