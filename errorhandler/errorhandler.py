@@ -1,11 +1,10 @@
-from telegram import Update, ParseMode
-from telegram.ext import CallbackContext
-from config import DEVELOPER_CHAT_ID
+from telegram import InputFile
+from config import DEVELOPER_CHAT_ID, BOT_USERNAME
 
 import logging
 import traceback
-import html
 import json
+import datetime
 
 # Setting up logging basic config for standart output
 logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
@@ -14,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(name)s | %(level
 logger = logging.getLogger()
 
 
-def error_handler(update: Update, context: CallbackContext):
+def error_handler(update, context) -> None:
     """Log the error and send a telegram message to notify the developer."""
     # Log the error before we do anything else, so we can see it even if something breaks.
     logger.error(msg="Exception while handling an update:", exc_info=context.error)
@@ -29,16 +28,25 @@ def error_handler(update: Update, context: CallbackContext):
     message = (
         f'An exception was raised while handling an update:\n'
         f'{"".ljust(45, "*")}\n'
-        f'<pre>update = {html.escape(json.dumps(update.to_dict(), indent=4, ensure_ascii=False))}'
-        f'</pre>\n'
+        f'update = {json.dumps(update.to_dict(), indent=4, ensure_ascii=False)}'
+        f'\n'
         f'{"".ljust(45, "*")}\n'
         # f'<pre>context.chat_data = {html.escape(str(context.chat_data))}</pre>\n'
         # f'{"".ljust(45, "*")}\n'
-        f'<pre>context.user_data = {html.escape(str(context.user_data))}</pre>\n'
+        f'context.user_data = {json.dumps(context.user_data.to_dict(), indent=4, ensure_ascii=False)}\n'
         f'{"".ljust(45, "*")}\n'
-        f'<pre>{html.escape(tb_string)}</pre>\n'
+        f'{tb_string}\n'
         f'{"".ljust(45, "*")}\n'
     )
 
-    # Finally, send the message
-    context.bot.send_message(chat_id=DEVELOPER_CHAT_ID, text=message, parse_mode=ParseMode.HTML)
+    path = f'/var/www/html/{BOT_USERNAME}/logs/'
+    document_name = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S") + '.txt'
+    full_path = path + document_name
+    with open(full_path, 'w') as f:
+        f.write(message)
+
+    with open(full_path, 'r') as f:
+        document = InputFile(f)
+    caption = 'New error 😥'
+    # Finally, send the document
+    context.bot.send_document(chat_id=DEVELOPER_CHAT_ID, caption=caption, document=document)
