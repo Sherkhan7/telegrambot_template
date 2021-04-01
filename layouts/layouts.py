@@ -1,6 +1,7 @@
 from helpers import wrap_tags
 from layouts.layoutdicts import *
 from DB import get_books
+from languages import LANGS
 
 
 def get_book_layout(book_data, user_lang):
@@ -96,9 +97,27 @@ def get_action_layout(books, data=None):
 
 # return layout
 
+def get_fullname_error_text(lang):
+    if lang == LANGS[0]:
+        text = "Ism,familya xato yuborildi!\n" \
+               "Qaytadan quyidagi formatda yuboring"
+        example = "Misol: Sherzodbek Esanov yoki Sherzodbek"
+
+    if lang == LANGS[1]:
+        text = "Имя,фамилия введено неверное!\n" \
+               "Отправьте еще раз в следующем формате"
+        example = 'Пример: Шерзодбек Эсанов или Шерзодбек'
+
+    if lang == LANGS[2]:
+        text = "Исм,фамиля хато юборилди!\n" \
+               "Қайтадан қуйидаги форматда юборинг"
+        example = "Мисол: Шерзодбек Эсанов ёки Шерзодбек"
+
+    return f'⚠  {text}:\n\n {wrap_tags(example)}'
+
 
 def get_phone_number_layout(lang):
     return f"{PHONE_NUMBER_LAYOUT_DICT[lang][1]}:\n\n" \
-           f"{PHONE_NUMBER_LAYOUT_DICT[lang][2]}: {wrap_tags('XX XXXXXXX')}\n" \
+           f"{PHONE_NUMBER_LAYOUT_DICT[lang][2]}: {wrap_tags('+998 XX xxx xx xx')}\n" \
            f"{PHONE_NUMBER_LAYOUT_DICT[lang][3]}\n" \
-           f"{PHONE_NUMBER_LAYOUT_DICT[lang][2]}: {wrap_tags('+998 XX XXXXXXX')}\n"
+           f"{PHONE_NUMBER_LAYOUT_DICT[lang][2]}: {wrap_tags('XX xxx xx xx')}\n"
