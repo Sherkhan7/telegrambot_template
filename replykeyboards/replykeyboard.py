@@ -1,3 +1,4 @@
+from DB import get_main_menu_buttons
 from telegram import ReplyKeyboardMarkup, KeyboardButton
 from .replykeyboardtypes import *
 
@@ -13,71 +14,79 @@ class ReplyKeyboard(object):
 
     def __create_reply_keyboard(self, keyb_type, lang):
 
-        if keyb_type == client_menu_keyboard or keyb_type == admin_menu_keyboard:
-            return self.__get_menu_keyboard(reply_keyboard_types[keyb_type][lang], keyb_type)
+        if keyb_type == main_menu_keyboard:
+            return self.__get_main_menu_keyboard(get_main_menu_buttons(), lang)
 
         elif keyb_type == settings_keyboard:
-
-            return self.__get_settings_keyboard(reply_keyboard_types[keyb_type][lang])
+            return self.__get_settings_keyboard(reply_keyboard_types[keyb_type], lang)
 
         elif keyb_type == phone_number_keyboard:
-            return self.__get_phone_number_keyboard(reply_keyboard_types[keyb_type][lang])
+            return self.__get_phone_number_keyboard(reply_keyboard_types[keyb_type], lang)
 
         elif keyb_type == location_keyboard:
-            return self.__get_location_keyboard(reply_keyboard_types[keyb_type][lang])
+            return self.__get_location_keyboard(reply_keyboard_types[keyb_type], lang)
+
+        elif keyb_type == passenger_mail_keyboard:
+            return self.__get_passenger_mail_keyboard(reply_keyboard_types[keyb_type], lang)
 
     @staticmethod
-    def __get_menu_keyboard(button, keyb_type):
-
-        emoji_1 = '\U0001F4DA'
-        emoji_2 = '\U0001F4C4'
-        emoji_3 = '\U0000260E'
-
-        if keyb_type == admin_menu_keyboard:
-            emoji_1 = '\U0001F4D2'
-            emoji_2 = '\U0001F4D1'
-            emoji_3 = '\U0001F5C4'
-
-        reply_keyboard = ReplyKeyboardMarkup([
-
-            [KeyboardButton(f'{emoji_1} {button[1]}')],
-            [KeyboardButton(f'{emoji_2} {button[2]}')],
-            [KeyboardButton(f'{emoji_3} {button[3]}')],
-            # [KeyboardButton(f'\U00002699 {lang[4]}')],
-
-        ], resize_keyboard=True, one_time_keyboard=True)
-
-        if keyb_type == client_menu_keyboard:
-            reply_keyboard.keyboard.insert(0, [KeyboardButton(button[5])])
-
-        return reply_keyboard
-
-    @staticmethod
-    def __get_settings_keyboard(button):
-
-        return ReplyKeyboardMarkup([
-
-            [KeyboardButton(f'\U0001F4D4 {button[1]}')],
-            [KeyboardButton(f'\U0001F310 {button[2]}')],
-            [KeyboardButton(f'\U00002B05 {button[3]}')],
-
-        ], resize_keyboard=True)
-
-    @staticmethod
-    def __get_phone_number_keyboard(buttons):
+    def __get_main_menu_keyboard(buttons, lang):
 
         return ReplyKeyboardMarkup([
             [
-                KeyboardButton(f'\U0001F464 {buttons[1]}', request_contact=True)]
+                KeyboardButton(f'{buttons[0]["icon"]} {buttons[0][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[1]["icon"]} {buttons[1][f"text_{lang}"]}')
+            ],
+            [
+                KeyboardButton(f'{buttons[2]["icon"]} {buttons[2][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[3]["icon"]} {buttons[3][f"text_{lang}"]}')
+            ],
+
         ], resize_keyboard=True)
 
     @staticmethod
-    def __get_location_keyboard(buttons):
+    def __get_settings_keyboard(buttons, lang):
+
+        return ReplyKeyboardMarkup([
+            [
+                KeyboardButton(f'{buttons[0]["icon"]} {buttons[0][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[1]["icon"]} {buttons[1][f"text_{lang}"]}')
+            ],
+            [KeyboardButton(f'{buttons[2]["icon"]} {buttons[2][f"text_{lang}"]}')],
+
+        ], resize_keyboard=True)
+
+    @staticmethod
+    def __get_phone_number_keyboard(buttons, lang):
+
+        return ReplyKeyboardMarkup([
+            [KeyboardButton(f'{buttons[0]["icon"]} {buttons[0][f"text_{lang}"]}', request_contact=True)]
+        ], resize_keyboard=True)
+
+    @staticmethod
+    def __get_location_keyboard(buttons, lang):
+
+        return ReplyKeyboardMarkup([
+            [KeyboardButton(f'{buttons[0]["icon"]} {buttons[0][f"text_{lang}"]}', request_location=True)],
+        ], resize_keyboard=True)
+
+    @staticmethod
+    def __get_passenger_mail_keyboard(buttons, lang):
 
         return ReplyKeyboardMarkup([
 
-            [KeyboardButton(f'{buttons[1]}')],
-            [KeyboardButton(f'\U0001F4CD {buttons[2]}', request_location=True)],
+            [
+                KeyboardButton(f'{buttons[0]["icon"]} {buttons[0][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[1]["icon"]} {buttons[1][f"text_{lang}"]}')
+            ],
+            [
+                KeyboardButton(f'{buttons[2]["icon"]} {buttons[2][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[3]["icon"]} {buttons[3][f"text_{lang}"]}')
+            ],
+            [
+                KeyboardButton(f'{buttons[4]["icon"]} {buttons[4][f"text_{lang}"]}'),
+                KeyboardButton(f'{buttons[5]["icon"]} {buttons[5][f"text_{lang}"]}')
+            ],
 
         ], resize_keyboard=True)
 
