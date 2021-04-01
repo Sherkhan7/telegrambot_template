@@ -29,8 +29,7 @@ def main():
     # updater.start_polling()
     # updater.idle()
 
-    updater.start_webhook(port=PORT, url_path=TOKEN)
-    updater.bot.set_webhook(url=URL + TOKEN, ip_address=SERVER_IP)
+    updater.start_webhook(port=PORT, url_path=TOKEN, webhook_url=URL + TOKEN, ip_address=SERVER_IP)
     updater.idle()
 
 
