@@ -1,5 +1,5 @@
 # bot's username
-bot_username = 'payshanbazigiroshbot'
+bot_username = 'username'
 
 # @telegrambot_name token:
 telegrambot_name_token = 'TOKEN'
@@ -14,9 +14,11 @@ mygroup2020_id = -1001384173376
 cardel_yuk_tashish_elon_id = -1001325913870
 
 ADMINS = {
-    'sherzodbek': 197256155,
+    'sherzodbek': {
+        'chat_id': 197256155,
+    },
 }
-
+ACTIVE_ADMINS = [ADMINS['sherzodbek']['chat_id']]
 # =====================================
 TOKEN = telegrambot_name_token
 BOT_USERNAME = bot_username
