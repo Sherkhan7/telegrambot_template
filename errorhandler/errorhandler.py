@@ -1,10 +1,10 @@
-from telegram import InputFile
-from config import DEVELOPER_CHAT_ID, BOT_USERNAME
-
 import logging
 import traceback
-import json
+import ujson
 import datetime
+
+from telegram import InputFile
+from config import DEVELOPER_CHAT_ID, BOT_USERNAME
 
 # Setting up logging basic config for standart output
 logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
@@ -28,12 +28,10 @@ def error_handler(update, context) -> None:
     message = (
         f'An exception was raised while handling an update:\n'
         f'{"".ljust(45, "*")}\n'
-        f'update = {json.dumps(update.to_dict(), indent=4, ensure_ascii=False)}'
+        f'update = {ujson.dumps(update.to_dict(), indent=4, ensure_ascii=False)}'
         f'\n'
         f'{"".ljust(45, "*")}\n'
-        # f'<pre>context.chat_data = {html.escape(str(context.chat_data))}</pre>\n'
-        # f'{"".ljust(45, "*")}\n'
-        f'context.user_data = {json.dumps(context.user_data, indent=4, ensure_ascii=False)}\n'
+        f'context.user_data = {ujson.dumps(context.user_data, indent=4, ensure_ascii=False)}\n'
         f'{"".ljust(45, "*")}\n'
         f'{tb_string}\n'
         f'{"".ljust(45, "*")}\n'
@@ -42,11 +40,13 @@ def error_handler(update, context) -> None:
     path = f'/var/www/html/{BOT_USERNAME}/logs/'
     document_name = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M-%S") + '.txt'
     full_path = path + document_name
+
     with open(full_path, 'w') as f:
         f.write(message)
 
     with open(full_path, 'r') as f:
         document = InputFile(f)
-    caption = 'New error 😥'
+
+    caption = '#newerror 😥'
     # Finally, send the document
     context.bot.send_document(chat_id=DEVELOPER_CHAT_ID, caption=caption, document=document)
